@@ -1,0 +1,12 @@
+- Oversett strenger til tjekkisk, norsk og engelsk
+- Løp
+  - Tap to start
+  - Fyll inn navnet på en du er glad i
+  - Litt info om honest txt
+  - "Se for deg at personen har mistet en som sto de nær"
+  - Start chat
+  - Avsluttes med en liten forklaring av hva honest.txt
+- Litt raskere feedback
+  - Utforske tidene
+- Få litt forskjellige responser
+- Legge inn emojies
