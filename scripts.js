@@ -4,6 +4,8 @@ const caret = document.createElement("div");
 caret.className = "caret";
 const messages = document.querySelector(".messages");
 const sendButton = document.querySelector(".button");
+const scenes = document.querySelectorAll(".scene");
+let currentScene = null;
 let sendTimeout = null;
 let timeout;
 let ghostMessageTimeoutStarted = false;
@@ -50,7 +52,7 @@ function fillWord() {
 function startSendTimeout() {
   if (sendTimeout === null) {
     console.log("Start send timeout");
-    setTimeout(send, 5 * 1000);
+    sendTimeout = setTimeout(send, 5 * 1000);
   }
 }
 
@@ -78,10 +80,6 @@ function send() {
 
     window.autosize.update(textarea);
     updateDisplay();
-
-    if (!ghostMessageTimeoutStarted) {
-      startGhostMessageTimeout();
-    }
 
     if (messages.lastElementChild.classList.contains("to")) {
       const newMessage = document.createElement("div");
@@ -149,7 +147,7 @@ function startSystemMessageTimeout() {
   );
 }
 
-function addGhostMessage(message) {
+function addFriendMessage(message) {
   const messages = document.querySelector(".messages");
   const newMessage = document.createElement("div");
   newMessage.classList.add("message", "from", "new");
@@ -162,7 +160,6 @@ function addGhostMessage(message) {
     </div>
   `;
 
-  startResetScreenTimeout();
   messages.appendChild(newMessage);
 }
 
@@ -172,32 +169,36 @@ function startGhostMessageTimeout() {
 
   setTimeout(
     () =>
-      addGhostMessage(`
+      addFriendMessage(`
     Halla.. Takk for meldingen. Den var jo interessant heh 😉 Jeg har det ikke så bra egentlig, kanskje vi kan møtes til uka?
   `),
     15 * 1000
   );
 }
 
-function startResetScreenTimeout() {
-  console.log("Start reset screen timeout");
-  setTimeout(addResetScreen, 10 * 1000);
-}
-
-function addResetScreen() {
-  const resetScreen = document.createElement("div");
-  resetScreen.classList.add("reset");
-  resetScreen.addEventListener("click", () => window.location.reload(true));
-  document.body.appendChild(resetScreen);
-}
-
-async function fetchStrings() {
-  const response = await fetch(
-    "/assets/strings." +
-      (navigator.language || navigator.userLanguage) +
-      ".json"
-  );
+async function fetchStrings(locale = navigator.language ?? "en") {
+  const response = await fetch("/assets/strings." + locale + ".json");
   if (response.ok) return await response.json();
+}
+
+function setScene() {
+  scenes.forEach((scene) => {
+    if (currentScene == null) {
+      scenes[0].classList.add("active");
+      currentScene = scenes[0];
+      return;
+    }
+    console.log(currentScene.dataset.id, scene.dataset.id);
+    if (currentScene.dataset.id == 0 && scene.dataset.id == 1)
+      scene.classList.add("active");
+    else scene.classList.remove("active");
+    if (currentScene.dataset.id == 1 && scene.dataset.id == 2)
+      scene.classList.add("active");
+    else scene.classList.remove("active");
+    if (currentScene.dataset.id == 2 && scene.dataset.id == 3)
+      scene.classList.add("active");
+    else scene.classList.remove("active");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -228,5 +229,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       send();
     }
   });
+  setScene();
   startSystemMessageTimeout();
 });

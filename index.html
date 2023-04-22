@@ -11,7 +11,34 @@
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="scene" data-id="0">
+    <h1>Don't fear the griever</h1>
+    <img src="/assets/symbol_kk_honesttext.svg" alt="Honest.txt logo">
+    <h2>honest.txt</h2>
+    <button class="start">tap to start</button>
+  </div>
+  <div class="scene flags" data-id="1">
+    <button data-id="cs">
+      🇨🇿
+    </button>
+    <button data-id="en">
+      🇬🇧
+    </button>
+    <button data-id="no">
+      🇳🇴
+    </button>
+  </div>
+  <div class="scene" data-id="2">
+    <div class="name-of-griever">
+      <p class="instruct-1"></p>
+      <p class="instruct-2"></p>
+      <form style="display: flex;flex-direction:column">
+        <input type="text">
+        <input type="submit" value="Go">
+      </form>
+    </div>
+  </div>
+  <div class="scene" data-id="3">
     <header>
       <div class="profile">
         <div class="picture">
@@ -91,7 +118,6 @@
       </div>
     </footer>
   </div>
-
   <script src="/autosize.min.js"></script>
   <script src="/scripts.js"></script>
 </body>

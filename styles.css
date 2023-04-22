@@ -2,7 +2,8 @@
 
 body {
   background: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
+    sans-serif;
   font-size: 16px;
   line-height: 1.34;
   margin: 0;
@@ -11,19 +12,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.wrapper {
+.stage {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
+.stage.active {
+  display: flex;
+}
 
 header {
-  border-bottom: 1px solid rgba(0, 0, 0, .10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   height: 50px;
   padding: 8px;
   display: flex;
@@ -38,7 +42,7 @@ header {
 }
 
 .picture {
-  background: url('assets/portrait_honesttext.jpg');
+  background: url("assets/portrait_honesttext.jpg");
   background-size: cover;
   color: transparent;
   height: 2em;
@@ -64,7 +68,7 @@ header {
   display: block;
   font-weight: 400;
   margin: 12px 0 12px 20px;
-  color: rgba(0, 0, 0, .40);
+  color: rgba(0, 0, 0, 0.4);
   font-size: 12px;
   margin: 15px 0;
   text-align: center;
@@ -73,7 +77,7 @@ header {
 
 .system-message i {
   display: inline-block;
-  background: url('assets/symbol_kk_honesttext.svg');
+  background: url("assets/symbol_kk_honesttext.svg");
   background-position: center;
   color: transparent;
   background-size: cover;
@@ -86,7 +90,7 @@ header {
   font-weight: 500;
   margin: 12px 0 12px 20px;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, .40);
+  color: rgba(0, 0, 0, 0.4);
   font-size: 12px;
   margin: 15px 0;
   text-align: center;
@@ -162,7 +166,7 @@ header {
 }
 
 .button {
-  background: url('assets/messenger-send.svg');
+  background: url("assets/messenger-send.svg");
   background-position: center;
   background-repeat: no-repeat;
   text-indent: -9999em;
@@ -171,7 +175,7 @@ header {
 }
 
 .typing .texts. div::after {
-  content: "•••"
+  content: "•••";
 }
 
 .new {
@@ -190,9 +194,8 @@ header {
   }
 }
 
-
 footer {
-  border-top: 1px solid rgba(0, 0, 0, .10);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 8px;
   flex-shrink: 0;
   display: flex;
@@ -267,7 +270,7 @@ footer {
 }
 
 .reset {
-  background: red url('assets/startslutt.svg');
+  background: red url("assets/startslutt.svg");
   background-position: center;
   background-repeat: no-repeat;
   position: absolute;
