@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.stage {
+.scene {
   position: absolute;
   top: 0;
   right: 0;
@@ -22,7 +22,7 @@ body {
   flex-direction: column;
 }
 
-.stage.active {
+.scene.active {
   display: flex;
 }
 

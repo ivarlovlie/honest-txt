@@ -1,0 +1,17 @@
+import type { BaseTranslation } from '../i18n-types'
+
+const en = {
+	nameOfFriend: "Write the name of a person you value:",
+	nameOfFriend2: "(not lover or best friend)",
+	buildUp: "{person} has recently lost one of their loved ones.",
+	buildUp2: "To make it less intimidating for you to show care, {person} has activated the service honest.txt.",
+	continueFromInfo: "Continue",
+	thoughtThatCounts: "It's the thought that counts",
+	about: "About",
+	tryAgain: "Try again",
+	outro: "\"honest.txt\" is a threshold reducer, a cultural service for those of us who feel a bit awkward showing care for someone who is grieving.",
+	outro1: "The plug-in service is activated on social media by those who have lost someone to indicate to others that the person is grieving.",
+	outro2: "When you hesitate, random words are presented to you. If you delete them, nothing happens. Your message will be sent regardless of how it ends up - because it's the thought that counts."
+} satisfies BaseTranslation
+
+export default en

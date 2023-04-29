@@ -4,8 +4,6 @@ const caret = document.createElement("div");
 caret.className = "caret";
 const messages = document.querySelector(".messages");
 const sendButton = document.querySelector(".button");
-const scenes = document.querySelectorAll(".scene");
-let currentScene = null;
 let sendTimeout = null;
 let timeout;
 let ghostMessageTimeoutStarted = false;
@@ -180,27 +178,6 @@ async function fetchStrings(locale = navigator.language ?? "en") {
   const response = await fetch("/assets/strings." + locale + ".json");
   if (response.ok) return await response.json();
 }
-
-function setScene() {
-  scenes.forEach((scene) => {
-    if (currentScene == null) {
-      scenes[0].classList.add("active");
-      currentScene = scenes[0];
-      return;
-    }
-    console.log(currentScene.dataset.id, scene.dataset.id);
-    if (currentScene.dataset.id == 0 && scene.dataset.id == 1)
-      scene.classList.add("active");
-    else scene.classList.remove("active");
-    if (currentScene.dataset.id == 1 && scene.dataset.id == 2)
-      scene.classList.add("active");
-    else scene.classList.remove("active");
-    if (currentScene.dataset.id == 2 && scene.dataset.id == 3)
-      scene.classList.add("active");
-    else scene.classList.remove("active");
-  });
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
   strings = await fetchStrings();
   window.autosize(textarea);
@@ -229,6 +206,5 @@ document.addEventListener("DOMContentLoaded", async () => {
       send();
     }
   });
-  setScene();
   startSystemMessageTimeout();
 });

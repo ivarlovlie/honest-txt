@@ -1,0 +1,261 @@
+  header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    height: 50px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .profile {
+    display: flex;
+    line-height: 2em;
+    user-select: none;
+  }
+
+  .picture {
+    background: url("/portrait_honesttext.jpg");
+    background-size: cover;
+    color: transparent;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 0.5em;
+  }
+
+  .messages {
+    font-family: inherit;
+    padding: 8px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .system-message {
+    display: block;
+    font-weight: 400;
+    margin: 12px 0 12px 20px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    margin: 15px 0;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .system-message i {
+    display: inline-block;
+    background: url("/symbol_kk_honesttext.svg");
+    background-position: center;
+    color: transparent;
+    background-size: cover;
+    height: 1em;
+    width: 1em;
+  }
+
+  .date {
+    display: block;
+    font-weight: 500;
+    margin: 12px 0 12px 20px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .message {
+    flex-shrink: 0;
+    margin: 15px 0;
+    position: relative;
+  }
+
+  .message .picture {
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+
+  .message.from .texts {
+    margin-left: 2.5em;
+  }
+
+  .texts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .texts div {
+    background: #f1f0f0;
+    /* max-width: 85%; */
+    word-wrap: break-word;
+    padding: 6px 12px 7px;
+    border-radius: 4px;
+    margin: 1px 0;
+  }
+
+  .to .texts {
+    align-items: flex-end;
+  }
+
+  .from .texts {
+    align-items: flex-start;
+  }
+
+  .from .texts div {
+    border-bottom-right-radius: 1.3em;
+    border-top-right-radius: 1.3em;
+  }
+  .from .texts div:first-of-type {
+    border-top-left-radius: 1.3em;
+  }
+  .from .texts div:last-of-type {
+    border-bottom-left-radius: 1.3em;
+  }
+
+  .to .texts div {
+    border-bottom-left-radius: 1.3em;
+    border-top-left-radius: 1.3em;
+    background: #0084ff;
+    color: white;
+  }
+  .to .texts div:first-of-type {
+    border-top-right-radius: 1.3em;
+  }
+  .to .texts div:last-of-type {
+    border-bottom-right-radius: 1.3em;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .button {
+    background: url("/messenger-send.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999em;
+    width: 2em;
+    height: 2em;
+  }
+
+  .typing .texts div::after {
+    content: "•••";
+  }
+
+  .new {
+    overflow: hidden;
+    animation: 500ms slideup;
+  }
+
+  @keyframes slideup {
+    from {
+      /* height: 0; */
+      transform: translateY(200%);
+    }
+    to {
+      /* height: 3em; */
+      transform: translateY(0);
+    }
+  }
+
+  footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    flex-shrink: 0;
+    display: flex;
+  }
+
+  .input {
+    position: relative;
+    max-height: 144px;
+    min-height: 18px;
+    overflow: auto;
+    background: #f1f0f0;
+    border-radius: 1.3em;
+    flex-grow: 1;
+  }
+
+  .input .display,
+  .input textarea {
+    font: inherit;
+    border: 0;
+    padding: 7px 12px;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .input textarea {
+    display: block;
+    height: 1em;
+    width: 100%;
+    outline: none;
+    color: transparent;
+    /* color: rgba(255, 0, 0, 0.5); */
+    -webkit-user-select: none;
+    user-select: none;
+    caret-color: transparent;
+    resize: none;
+  }
+
+  .input .display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .input .caret {
+    display: inline-block;
+    position: relative;
+  }
+
+  @keyframes caretBlink {
+    0% {
+      opacity: 0;
+    }
+
+    20% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .input .caret:after {
+    content: "";
+    position: absolute;
+    bottom: -0.15em;
+    left: 0;
+    height: 1em;
+    border-right: 2px #446cf2 solid;
+    animation: caretBlink 0.5s alternate infinite;
+  }
+
+  @media (min-width: 320px) {
+    .texts div {
+      max-width: 85%;
+    }
+  }
+
+  @media (min-width: 920px) {
+    .texts div {
+      max-width: 70%;
+    }
+  }
+
+  @media (min-width: 1211px) {
+    .texts div {
+      max-width: 55%;
+    }
+  }
