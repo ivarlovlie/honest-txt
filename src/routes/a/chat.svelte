@@ -2,20 +2,19 @@
   //@ts-nocheck
   import LL from "$i18n/i18n-svelte";
   import { Stages, state } from "$lib/state";
+  import { onMount } from "svelte";
+  import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
-  const textarea = document.querySelector("textarea");
-  const display = document.querySelector(".display");
   const caret = document.createElement("div");
+  let display;
   caret.className = "caret";
-  const messages = document.querySelector(".messages");
-  const sendButton = document.querySelector(".button");
+  let messages;
+  let sendButton;
+  let textarea;
   let sendTimeout = null;
   let timeout;
-  let ghostMessageTimeoutStarted = false;
   let strings;
-  setTimeout(() => {
-    $state.currentStage = Stages.THOUGHT;
-  },1000)
+
   function startFillWordTimer() {
     const stopPunctuationPattern = /[.?!]$/;
     const text = textarea.value.trim();
@@ -48,7 +47,7 @@
     textarea.value = `${
       textarea.value
     }${spaceBetween}${getRandomStringFromArray(strings.wordlist)} `;
-    window.autosize.update(textarea);
+    autosize.update(textarea);
 
     updateDisplay();
     startFillWordTimer();
@@ -83,7 +82,7 @@
       textarea.value = "";
       textarea.blur();
 
-      window.autosize.update(textarea);
+      autosize.update(textarea);
       updateDisplay();
 
       if (messages.lastElementChild.classList.contains("to")) {
@@ -103,10 +102,10 @@
         newMessage.classList.add("message", "to", "new");
 
         newMessage.innerHTML = `
-        <div class="texts">
-          <div>
+        <div class="texts written">
+          <p>
             ${text}
-          </div>
+          </p>
         </div>
       `;
 
@@ -123,71 +122,8 @@
     }
   }
 
-  function addSystemMessage(message) {
-    const messages = document.querySelector(".messages");
-    const systemMessage = document.createElement("div");
-    systemMessage.classList.add("system-message", "new");
-    systemMessage.innerHTML = `
-    <i>*</i> ${message}
-  `;
-
-    messages.appendChild(systemMessage);
-  }
-
-  function startSystemMessageTimeout() {
-    console.log("Start system message timeout");
-    setTimeout(
-      () =>
-        addSystemMessage(`
-    Willam has activated Honest text. Messages you write will be in honest.txt
-  `),
-      1 * 1000
-    );
-    setTimeout(
-      () =>
-        addSystemMessage(`
-    If you hesitate, honest.txt gives you a random word to get you going. After 1 minute, the message will be automatically sent. Just write, don't worry.
-  `),
-      2 * 1000
-    );
-  }
-
-  function addFriendMessage(message) {
-    const messages = document.querySelector(".messages");
-    const newMessage = document.createElement("div");
-    newMessage.classList.add("message", "from", "new");
-    newMessage.innerHTML = `
-    <div class="picture"></div>
-    <div class="texts">
-      <div>
-        ${message}
-      </div>
-    </div>
-  `;
-
-    messages.appendChild(newMessage);
-  }
-
-  function startGhostMessageTimeout() {
-    console.log("Start ghost message timeout");
-    ghostMessageTimeoutStarted = true;
-
-    setTimeout(
-      () =>
-        addFriendMessage(`
-    Halla.. Takk for meldingen. Den var jo interessant heh 😉 Jeg har det ikke så bra egentlig, kanskje vi kan møtes til uka?
-  `),
-      15 * 1000
-    );
-  }
-
-  async function fetchStrings(locale = navigator.language ?? "en") {
-    const response = await fetch("/assets/strings." + locale + ".json");
-    if (response.ok) return await response.json();
-  }
-  document.addEventListener("DOMContentLoaded", async () => {
-    strings = await fetchStrings();
-    window.autosize(textarea);
+  onMount(async () => {
+    autosize(textarea);
     textarea.addEventListener("input", updateDisplay);
     textarea.addEventListener("select", goToEnd);
     textarea.addEventListener("input", goToEnd);
@@ -213,7 +149,6 @@
         send();
       }
     });
-    startSystemMessageTimeout();
   });
 </script>
 
@@ -224,57 +159,41 @@
   </div>
 </header>
 
-<main class="messages">
-  <div class="date">12. des 2018, 16:30</div>
-
+<main class="messages" bind:this={messages}>
+  <div class="date">02. JAN, 11:40</div>
   <div class="message from">
     <div class="picture" />
     <div class="texts">
-      <div>Sett laderen min? :))</div>
+      <p>{$LL.initialChat[1].chat()}</p>
     </div>
   </div>
-
   <div class="message to">
     <div class="texts">
-      <div>Nope… rotehue 😛</div>
+      <p>{$LL.initialChat[1].response()}</p>
     </div>
   </div>
-
-  <div class="date">05. jan 2019, 09:30</div>
-
   <div class="message from">
     <div class="picture" />
     <div class="texts">
-      <div>Hei, sender du over den pdf’en?</div>
+      <p>{$LL.initialChat[2].chat1()}</p>
+      <p>{$LL.initialChat[2].chat2()}</p>
     </div>
   </div>
-
-  <div class="message to">
-    <div class="texts">
-      <div>Null stress, sees på Kulturhuset torsdag?</div>
-    </div>
+  <div class="date">{$LL.yesterday() + ", 18:40"}</div>
+  <div class="system-message">
+    * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
   </div>
-
-  <div class="date">16. mar 2019, 14:08</div>
-
-  <div class="message from">
-    <div class="picture" />
-    <div class="texts">
-      <div>
-        Takk for i går! Fint å se deg, finne på noe sprell neste helg🔥?
-      </div>
-    </div>
-  </div>
+  <div class="date">{$LL.now()}</div>
 </main>
 
 <footer>
   <div class="input">
-    <textarea class="input" />
-    <div class="display" />
+    <textarea class="input" bind:this={textarea} />
+    <div class="display" bind:this={display} />
   </div>
 
   <div class="actions">
-    <button type="button" class="button">Send</button>
+    <button type="button" class="button" bind:this={sendButton}>Send</button>
   </div>
 </footer>
 

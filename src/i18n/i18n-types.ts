@@ -61,6 +61,41 @@ type RootTranslation = {
 	 * W​h​e​n​ ​y​o​u​ ​h​e​s​i​t​a​t​e​,​ ​r​a​n​d​o​m​ ​w​o​r​d​s​ ​a​r​e​ ​p​r​e​s​e​n​t​e​d​ ​t​o​ ​y​o​u​.​ ​I​f​ ​y​o​u​ ​d​e​l​e​t​e​ ​t​h​e​m​,​ ​n​o​t​h​i​n​g​ ​h​a​p​p​e​n​s​.​ ​Y​o​u​r​ ​m​e​s​s​a​g​e​ ​w​i​l​l​ ​b​e​ ​s​e​n​t​ ​r​e​g​a​r​d​l​e​s​s​ ​o​f​ ​h​o​w​ ​i​t​ ​e​n​d​s​ ​u​p​ ​-​ ​b​e​c​a​u​s​e​ ​i​t​'​s​ ​t​h​e​ ​t​h​o​u​g​h​t​ ​t​h​a​t​ ​c​o​u​n​t​s​.
 	 */
 	outro2: string
+	initialChat: {
+		'1': {
+			/**
+			 * L​o​o​k​ ​!​!​!​ ​.​.​t​h​e​r​e​ ​a​r​e​ ​s​e​r​i​o​u​s​l​y​ ​l​o​t​s​ ​o​f​ ​s​h​o​o​t​i​n​g​ ​s​t​a​r​s​ ​t​o​n​i​g​h​t
+			 */
+			chat: string
+			/**
+			 * I​t​'​s​ ​m​o​r​n​i​n​g​ ​i​n​ ​T​o​k​y​o​ ​�​�
+			 */
+			response: string
+		}
+		'2': {
+			/**
+			 * K​o​n​’​n​i​c​h​i​w​a​a​a​!​ ​H​o​p​e​ ​T​o​k​y​o​ ​t​r​e​a​t​s​ ​y​o​u​ ​l​i​k​e​ ​r​o​y​a​l​t​y​ ​:​)​)​)​)
+			 */
+			chat1: string
+			/**
+			 * T​a​k​e​ ​l​o​t​s​ ​o​f​ ​p​i​c​s​!
+			 */
+			chat2: string
+		}
+	}
+	/**
+	 * {​p​e​r​s​o​n​}​ ​h​a​s​ ​a​c​t​i​v​a​t​e​d​ ​h​o​n​e​s​t​.​t​x​t
+	 * @param {unknown} person
+	 */
+	personHasActivatedHonestTxt: RequiredParams<'person'>
+	/**
+	 * Y​e​s​t​e​r​d​a​y
+	 */
+	yesterday: string
+	/**
+	 * (​n​o​w​)
+	 */
+	now: string
 }
 
 export type TranslationFunctions = {
@@ -108,6 +143,40 @@ export type TranslationFunctions = {
 	 * When you hesitate, random words are presented to you. If you delete them, nothing happens. Your message will be sent regardless of how it ends up - because it's the thought that counts.
 	 */
 	outro2: () => LocalizedString
+	initialChat: {
+		'1': {
+			/**
+			 * Look !!! ..there are seriously lots of shooting stars tonight
+			 */
+			chat: () => LocalizedString
+			/**
+			 * It's morning in Tokyo 😎
+			 */
+			response: () => LocalizedString
+		}
+		'2': {
+			/**
+			 * Kon’nichiwaaa! Hope Tokyo treats you like royalty :))))
+			 */
+			chat1: () => LocalizedString
+			/**
+			 * Take lots of pics!
+			 */
+			chat2: () => LocalizedString
+		}
+	}
+	/**
+	 * {person} has activated honest.txt
+	 */
+	personHasActivatedHonestTxt: (arg: { person: unknown }) => LocalizedString
+	/**
+	 * Yesterday
+	 */
+	yesterday: () => LocalizedString
+	/**
+	 * (now)
+	 */
+	now: () => LocalizedString
 }
 
 export type Formatters = {}

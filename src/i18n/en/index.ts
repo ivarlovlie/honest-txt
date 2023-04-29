@@ -11,7 +11,20 @@ const en = {
 	tryAgain: "Try again",
 	outro: "\"honest.txt\" is a threshold reducer, a cultural service for those of us who feel a bit awkward showing care for someone who is grieving.",
 	outro1: "The plug-in service is activated on social media by those who have lost someone to indicate to others that the person is grieving.",
-	outro2: "When you hesitate, random words are presented to you. If you delete them, nothing happens. Your message will be sent regardless of how it ends up - because it's the thought that counts."
+	outro2: "When you hesitate, random words are presented to you. If you delete them, nothing happens. Your message will be sent regardless of how it ends up - because it's the thought that counts.",
+	initialChat: {
+		1: {
+			chat: "Look !!! ..there are seriously lots of shooting stars tonight",
+			response: "It's morning in Tokyo 😎"
+		},
+		2: {
+			chat1: "Kon’nichiwaaa! Hope Tokyo treats you like royalty :))))",
+			chat2: "Take lots of pics!"
+		}
+	},
+	personHasActivatedHonestTxt: "{person} has activated honest.txt",
+	yesterday: "Yesterday",
+	now: "(now)"
 } satisfies BaseTranslation
 
 export default en
