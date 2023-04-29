@@ -7,6 +7,7 @@
   async function handleLocaleClick(locale: Locales) {
     await loadLocaleAsync(locale);
     setLocale(locale);
+    $state.locale = locale;
     $state.currentStage = Stages.NAME;
   }
 </script>

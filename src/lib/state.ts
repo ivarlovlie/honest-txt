@@ -1,3 +1,5 @@
+import type { Locales } from "$i18n/i18n-types";
+import { locales } from "$i18n/i18n-util";
 import { writable } from "svelte/store";
 
 enum Stages {
@@ -13,13 +15,15 @@ enum Stages {
 type AppState = {
     name: string,
     currentStage: Stages,
+    locale: Locales
 }
 
 export const storageKey = "state";
 
 const initialState = {
     name: "",
-    currentStage: Stages.WELCOME
+    currentStage: Stages.WELCOME,
+    locale: "en" as Locales
 }
 
 const storedState = JSON.parse(sessionStorage.getItem(storageKey) ?? JSON.stringify(initialState));
