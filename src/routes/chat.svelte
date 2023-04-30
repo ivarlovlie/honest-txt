@@ -6,6 +6,7 @@
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
   import Tooltip from "$lib/components/tooltip.svelte";
+  import Dots from "$lib/components/dots.svelte";
   const caret = document.createElement("div");
   let display;
   caret.className = "caret";
@@ -14,13 +15,50 @@
   let textarea;
   let sendTimeout = null;
   let timeout;
-  let strings;
+  const strings = {
+    cs: [
+      "náhle",
+      "úzký",
+      "hbitý",
+      "poloviční",
+      "kluzký",
+      "suchý",
+      "zkracující",
+      "teplý",
+      "produktivní",
+      "extra",
+    ],
+    en: [
+      "ambivalent",
+      "deserted",
+      "sudden",
+      "narrow",
+      "flexible",
+      "half",
+      "smooth",
+      "dry",
+      "abbreviating",
+      "warm",
+    ],
+    nb: [
+      "direkte",
+      "felles",
+      "hoppende",
+      "ubestemt",
+      "sakte",
+      "frivillig",
+      "kjent",
+      "opprinnelig",
+      "vaiende",
+    ],
+  };
 
   let showContinueTooltip = false;
+  let showDots = false;
 
   const timings = {
     wordFill: 3000,
-    autoSend: 5000,
+    autoSend: 10000,
   };
 
   function startFillWordTimer() {
@@ -53,7 +91,7 @@
     const spaceBetween = textarea.value.endsWith(" ") ? "" : " ";
     textarea.value = `${
       textarea.value
-    }${spaceBetween}${getRandomStringFromArray(strings)}`;
+    }${spaceBetween}${getRandomStringFromArray(strings[$state.locale])}`;
     autosize.update(textarea);
     updateDisplay();
     startFillWordTimer();
@@ -76,6 +114,34 @@
   function goToEnd() {
     const length = textarea.value.length;
     textarea.setSelectionRange(length, length);
+  }
+
+  function addGhostMessage(message) {
+    const messages = document.querySelector(".messages");
+    const newMessage = document.createElement("div");
+    newMessage.classList.add("message", "from", "new");
+    newMessage.innerHTML = `
+    <div class="picture"></div>
+    <div class="texts">
+      <p>
+        ${message}
+      </p>
+    </div>
+  `;
+    messages.appendChild(newMessage);
+  }
+
+  let dotsTimeout;
+
+  function startDots() {
+    if (dotsTimeout) return;
+    dotsTimeout = setTimeout(() => {
+      showDots = true;
+      setTimeout(() => {
+        showDots = false;
+        addGhostMessage("Halla, sees senere");
+      }, 4000);
+    }, 4000);
   }
 
   function send() {
@@ -107,6 +173,7 @@
 
     scrollToBottom();
     showContinueTooltip = true;
+    startDots();
   }
 
   function scrollToBottom() {
@@ -150,22 +217,18 @@
         send();
       }
     });
-    strings = (
-      await import("../../lib/assets/strings." + $state.locale + ".json")
-    ).wordlist;
   });
 </script>
 
-<Tooltip show={showContinueTooltip} bindTo={messages} placement="bottom-start">
-  <p>Its the thought that counts {"</3"}</p>
-  <button
-    on:click={() => {
-      $state.currentStage = Stages.OUTRO;
-    }}
-  >
-    Continue
-  </button>
-</Tooltip>
+<aside
+  id="continue-message"
+  on:click={() => {
+    $state.currentStage = Stages.OUTRO;
+  }}
+  style="display: {showContinueTooltip ? 'block' : 'none'}"
+>
+  <p>{$LL.clickHereToContinue()} >>></p>
+</aside>
 
 <section>
   <header>
@@ -200,6 +263,16 @@
       * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
     </div>
     <div class="date initial-message">{$LL.now()}</div>
+    {#if showDots}
+      <div class="message from">
+        <div class="picture" />
+        <div class="texts">
+          <p>
+            <Dots />
+          </p>
+        </div>
+      </div>
+    {/if}
   </main>
 
   <footer>
@@ -220,6 +293,7 @@
 
 <style>
   @import url("/chat.css");
+
   section {
     position: absolute;
     top: 0;
@@ -230,7 +304,19 @@
     flex-direction: column;
     overflow: hidden;
   }
+
   :global(body) {
     background-color: white;
+  }
+
+  #continue-message {
+    background-color: #e5dcf5;
+    color: #56525c;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 10000;
   }
 </style>

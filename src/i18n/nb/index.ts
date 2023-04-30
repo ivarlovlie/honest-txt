@@ -25,7 +25,8 @@ const nb = {
 	personHasActivatedHonestTxt: "{person} har aktivert honest.txt",
 	yesterday: "I går",
 	now: "(nåtid)",
-	inputPlaceholder: "Skriv her..."
+	inputPlaceholder: "Skriv her...",
+	clickHereToContinue: "Trykk her for å fortsette"
 } satisfies Translation
 
 export default nb

@@ -100,6 +100,10 @@ type RootTranslation = {
 	 * W​r​i​t​e​ ​h​e​r​e​.​.​.
 	 */
 	inputPlaceholder: string
+	/**
+	 * C​l​i​c​k​ ​h​e​r​e​ ​t​o​ ​c​o​n​t​i​n​u​e
+	 */
+	clickHereToContinue: string
 }
 
 export type TranslationFunctions = {
@@ -185,6 +189,10 @@ export type TranslationFunctions = {
 	 * Write here...
 	 */
 	inputPlaceholder: () => LocalizedString
+	/**
+	 * Click here to continue
+	 */
+	clickHereToContinue: () => LocalizedString
 }
 
 export type Formatters = {}

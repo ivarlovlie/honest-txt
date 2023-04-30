@@ -25,7 +25,8 @@ const cs = {
 	personHasActivatedHonestTxt: "{person} aktivováno honest.txt",
 	yesterday: "VČERA",
 	now: "(přítomný čas)",
-	inputPlaceholder: "Pište zde..."
+	inputPlaceholder: "Pište zde...",
+	clickHereToContinue: "Klikněte zde pro pokračování"
 } satisfies Translation
 
 export default cs

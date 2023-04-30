@@ -11,9 +11,7 @@
 </script>
 
 <svelte:head>
-  <title>
-    honest.txt
-  </title>
+  <title>honest.txt</title>
 </svelte:head>
 
 <slot />
