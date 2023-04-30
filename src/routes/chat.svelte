@@ -14,6 +14,7 @@
   let textarea;
   let sendTimeout = null;
   let timeout;
+
   const strings = {
     cs: [
       "náhle",
@@ -26,6 +27,28 @@
       "teplý",
       "produktivní",
       "extra",
+      "plout",
+      "následovat",
+      "mapovat",
+      "přetvařovat se",
+      "klíčit",
+      "domnívat se",
+      "házet",
+      "setkat se",
+      "husí kůže",
+      "list",
+      "domov",
+      "nit",
+      "ručně psaný text",
+      "sáček",
+      "znak",
+      "scéna",
+      "sval",
+      "vřeteno",
+      "bez zápachu",
+      "deska",
+      "bublina",
+      "rada",
     ],
     en: [
       "ambivalent",
@@ -38,6 +61,25 @@
       "dry",
       "abbreviating",
       "warm",
+      "smooth",
+      "productive",
+      "extra",
+      "direct",
+      "common",
+      "jumping",
+      "indefinite",
+      "slow",
+      "voluntary",
+      "known",
+      "original",
+      "wavy",
+      "out",
+      "contribute",
+      "unfold",
+      "bind",
+      "hurry",
+      "operate",
+      "mess",
     ],
     nb: [
       "direkte",
@@ -49,6 +91,26 @@
       "kjent",
       "opprinnelig",
       "vaiende",
+      "luktfri",
+      "perm",
+      "boble",
+      "råd",
+      "tusj",
+      "krykke",
+      "hode",
+      "plaster",
+      "blekk",
+      "omvei",
+      "bjørnetjeneste",
+      "protese",
+      "kontor",
+      "linje",
+      "stikling",
+      "fatning",
+      "skjerm",
+      "oppdatering",
+      "perspektiv",
+      "arbeid",
     ],
   };
 
@@ -56,8 +118,8 @@
   let showDots = false;
 
   const timings = {
-    wordFill: 3000,
-    autoSend: 10000,
+    wordFill: 2000,
+    autoSend: 30000,
   };
 
   function startFillWordTimer() {
@@ -128,6 +190,7 @@
     </div>
   `;
     messages.appendChild(newMessage);
+    scrollToBottom();
   }
 
   let dotsTimeout;
@@ -219,15 +282,7 @@
   });
 </script>
 
-<aside
-  id="continue-message"
-  on:click={() => {
-    $state.currentStage = Stages.THOUGHT;
-  }}
-  style="display: {showContinueTooltip ? 'block' : 'none'}"
->
-  <p>{$LL.clickHereToContinue()} >>></p>
-</aside>
+
 
 <section>
   <header>
@@ -275,6 +330,15 @@
   </main>
 
   <footer>
+    <aside
+  id="continue-message"
+  on:click={() => {
+    $state.currentStage = Stages.THOUGHT;
+  }}
+  style="display: {showContinueTooltip ? 'block' : 'none'}"
+>
+  <p>{$LL.clickHereToContinue()} >>></p>
+</aside>
     <div class="input">
       <textarea
         class="input"
@@ -309,13 +373,12 @@
   }
 
   #continue-message {
-    background-color: #e5dcf5;
     color: #56525c;
     font-size: 14px;
     position: absolute;
-    right: 0;
-    top: 0;
     cursor: pointer;
     z-index: 10000;
+    right: 0;
+    bottom: 50px;
   }
 </style>
