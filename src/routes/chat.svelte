@@ -7,9 +7,9 @@
   import { profilePictureFallback } from "$lib/utils";
   import Dots from "$lib/components/dots.svelte";
   const caret = document.createElement("div");
-  let display;
   caret.className = "caret";
   let messages;
+  let display;
   let sendButton;
   let textarea;
   let sendTimeout = null;
@@ -248,7 +248,7 @@
       display.appendChild(caret);
     }
   }
-
+  
   onMount(async () => {
     autosize(textarea);
     textarea.addEventListener("input", updateDisplay);
@@ -335,7 +335,7 @@
       }}
       style="display: {showContinueTooltip ? 'block' : 'none'}"
     >
-      <p>{$LL.clickHereToContinue()}   >>></p>
+      <p>{$LL.clickHereToContinue()} >>></p>
     </aside>
     <div class="input">
       <textarea

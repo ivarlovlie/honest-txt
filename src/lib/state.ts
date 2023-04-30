@@ -1,5 +1,4 @@
 import type { Locales } from "$i18n/i18n-types";
-import { locales } from "$i18n/i18n-util";
 import { writable } from "svelte/store";
 
 enum Stages {
