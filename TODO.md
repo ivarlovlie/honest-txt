@@ -1,4 +1,1 @@
-- Legg inn 60 sekunder på outro som går tilbake til start
-- Legg inn placeholder som oppfordrer til å skrive
-- Legg inn en tooltip som man trykker på for å gå videre fra chat
 - Forside

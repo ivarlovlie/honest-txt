@@ -5,7 +5,6 @@
   import { onMount } from "svelte";
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
-  import Tooltip from "$lib/components/tooltip.svelte";
   import Dots from "$lib/components/dots.svelte";
   const caret = document.createElement("div");
   let display;
@@ -223,7 +222,7 @@
 <aside
   id="continue-message"
   on:click={() => {
-    $state.currentStage = Stages.OUTRO;
+    $state.currentStage = Stages.THOUGHT;
   }}
   style="display: {showContinueTooltip ? 'block' : 'none'}"
 >
