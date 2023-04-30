@@ -24,8 +24,8 @@ const nb = {
 	},
 	personHasActivatedHonestTxt: "{person} har aktivert honest.txt",
 	yesterday: "I går",
-	now: "(nåtid)"
-
+	now: "(nåtid)",
+	inputPlaceholder: "Skriv her..."
 } satisfies Translation
 
 export default nb

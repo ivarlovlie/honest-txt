@@ -2,12 +2,20 @@
   import LL from "$i18n/i18n-svelte";
   import Logo from "$lib/components/logo.svelte";
   import { Stages, reset, state } from "$lib/state";
+  import { onDestroy } from "svelte";
+
+  let timeout = setTimeout(startOver, 60000);
 
   function startOver() {
     reset();
     // In some cases svelte does not catch the state update, so we make sure we get back to start here
     $state.currentStage = Stages.WELCOME;
+    clearTimeout(timeout);
   }
+
+  onDestroy(() => {
+    clearTimeout(timeout);
+  });
 </script>
 
 <section>

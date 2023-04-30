@@ -24,6 +24,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@popperjs/core": "^2.11.7",
+		"@vercel/analytics": "^1.0.0",
 		"autosize": "^6.0.1",
 		"typesafe-i18n": "^5.24.3"
 	}

@@ -10,6 +10,12 @@
   });
 </script>
 
+<svelte:head>
+  <title>
+    honest.txt
+  </title>
+</svelte:head>
+
 <slot />
 
 <style>

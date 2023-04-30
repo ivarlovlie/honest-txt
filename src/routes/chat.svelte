@@ -5,6 +5,7 @@
   import { onMount } from "svelte";
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
+  import Tooltip from "$lib/components/tooltip.svelte";
   const caret = document.createElement("div");
   let display;
   caret.className = "caret";
@@ -15,6 +16,13 @@
   let timeout;
   let strings;
 
+  let showContinueTooltip = false;
+
+  const timings = {
+    wordFill: 3000,
+    autoSend: 5000,
+  };
+
   function startFillWordTimer() {
     const stopPunctuationPattern = /[.?!]$/;
     const text = textarea.value.trim();
@@ -23,7 +31,7 @@
 
     // Only start timer if there is no stop punctuation
     if (!stopPunctuationPattern.test(text)) {
-      timeout = setTimeout(fillWord, 6000);
+      timeout = setTimeout(fillWord, timings.wordFill);
       console.log("Started fill word timeout");
     }
   }
@@ -43,20 +51,19 @@
   function fillWord() {
     console.log("Fill word");
     const spaceBetween = textarea.value.endsWith(" ") ? "" : " ";
-
     textarea.value = `${
       textarea.value
-    }${spaceBetween}${getRandomStringFromArray(strings)} `;
+    }${spaceBetween}${getRandomStringFromArray(strings)}`;
     autosize.update(textarea);
-
     updateDisplay();
     startFillWordTimer();
+    textarea.style.color = "transparent";
   }
 
   function startSendTimeout() {
     if (sendTimeout === null) {
       console.log("Start send timeout");
-      sendTimeout = setTimeout(send, 5 * 1000);
+      sendTimeout = setTimeout(send, timings.autoSend);
     }
   }
 
@@ -72,51 +79,34 @@
   }
 
   function send() {
-    console.log("Send");
-
     resetSendTimeout();
+    const text = textarea.value.trim();
+    if (!text) return;
 
-    const text = textarea.value;
+    textarea.value = "";
+    textarea.blur();
+    autosize.update(textarea);
+    updateDisplay();
 
-    if (text.trim().length) {
-      textarea.value = "";
-      textarea.blur();
-
-      autosize.update(textarea);
-      updateDisplay();
-
-      if (messages.lastElementChild.classList.contains("to")) {
-        const newMessage = document.createElement("p");
-        newMessage.textContent = text;
-        messages.lastElementChild.lastElementChild.appendChild(newMessage);
-      } else {
-        const date = document.createElement("div");
-        date.classList.add("date");
-
-        const hours = `${new Date().getHours()}`.padStart(2, "0");
-        const minutes = `${new Date().getMinutes()}`.padStart(2, "0");
-
-        date.textContent = `${hours}:${minutes}`;
-
-        const newMessage = document.createElement("div");
-        newMessage.classList.add("message", "to", "new");
-
-        newMessage.innerHTML = `
+    if (messages.lastElementChild.classList.contains("to")) {
+      const newMessage = document.createElement("p");
+      newMessage.textContent = text;
+      messages.lastElementChild.lastElementChild.appendChild(newMessage);
+    } else {
+      const newMessage = document.createElement("div");
+      newMessage.classList.add("message", "to", "new");
+      newMessage.innerHTML = `
         <div class="texts written">
           <p>
             ${text}
           </p>
         </div>
       `;
-
-        messages.appendChild(date);
-        messages.appendChild(newMessage);
-      }
-      scrollToBottom();
-      setTimeout(() => {
-        $state.currentStage = Stages.THOUGHT;
-      }, 1500);
+      messages.appendChild(newMessage);
     }
+
+    scrollToBottom();
+    showContinueTooltip = true;
   }
 
   function scrollToBottom() {
@@ -149,6 +139,9 @@
     textarea.addEventListener("blur", () => {
       display.removeChild(caret);
     });
+    textarea.addEventListener("input", () => {
+      textarea.style.color = "transparent";
+    });
     textarea.addEventListener("keydown", (event) => {
       if (event.code === "Backspace") {
         event.preventDefault();
@@ -162,6 +155,17 @@
     ).wordlist;
   });
 </script>
+
+<Tooltip show={showContinueTooltip} bindTo={messages} placement="bottom-start">
+  <p>Its the thought that counts {"</3"}</p>
+  <button
+    on:click={() => {
+      $state.currentStage = Stages.OUTRO;
+    }}
+  >
+    Continue
+  </button>
+</Tooltip>
 
 <section>
   <header>
@@ -191,16 +195,20 @@
         <p>{$LL.initialChat[2].chat2()}</p>
       </div>
     </div>
-    <div class="date">{$LL.yesterday() + ", 18:40"}</div>
-    <div class="system-message">
+    <div class="date initial-message">{$LL.yesterday() + ", 18:40"}</div>
+    <div class="system-message initial-message">
       * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
     </div>
-    <div class="date">{$LL.now()}</div>
+    <div class="date initial-message">{$LL.now()}</div>
   </main>
 
   <footer>
     <div class="input">
-      <textarea class="input" bind:this={textarea} />
+      <textarea
+        class="input"
+        bind:this={textarea}
+        placeholder={$LL.inputPlaceholder()}
+      />
       <div class="display" bind:this={display} />
     </div>
 

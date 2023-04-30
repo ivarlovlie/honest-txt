@@ -127,7 +127,9 @@ header {
 .written p {
   background: red !important;
 }
-
+.initial-message {
+  margin-bottom: -5px;
+}
 .to .texts p:first-of-type {
   border-top-right-radius: 1.3em;
 }
@@ -141,6 +143,7 @@ header {
   flex-grow: 0;
   flex-shrink: 0;
   align-items: center;
+  width: 35px;
 }
 
 .button {
@@ -204,9 +207,7 @@ footer {
   height: 1em;
   width: 100%;
   outline: none;
-  color: transparent;
-  /* color: rgba(255, 0, 0, 0.5); */
-  -webkit-user-select: none;
+  color: rgba(0, 0, 0, 0.5);
   user-select: none;
   caret-color: transparent;
   resize: none;

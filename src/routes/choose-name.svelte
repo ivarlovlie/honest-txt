@@ -18,7 +18,7 @@
   </div>
   <form on:submit={submit}>
     <input type="text" bind:value={name} required />
-    <input type="submit" value="Go" />
+    <input type="submit" value=">>>" />
   </form>
 </section>
 

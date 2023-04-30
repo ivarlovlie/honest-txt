@@ -96,6 +96,10 @@ type RootTranslation = {
 	 * (​n​o​w​)
 	 */
 	now: string
+	/**
+	 * W​r​i​t​e​ ​h​e​r​e​.​.​.
+	 */
+	inputPlaceholder: string
 }
 
 export type TranslationFunctions = {
@@ -177,6 +181,10 @@ export type TranslationFunctions = {
 	 * (now)
 	 */
 	now: () => LocalizedString
+	/**
+	 * Write here...
+	 */
+	inputPlaceholder: () => LocalizedString
 }
 
 export type Formatters = {}

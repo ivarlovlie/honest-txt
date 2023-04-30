@@ -24,7 +24,8 @@ const en = {
 	},
 	personHasActivatedHonestTxt: "{person} has activated honest.txt",
 	yesterday: "Yesterday",
-	now: "(now)"
+	now: "(now)",
+	inputPlaceholder: "Write here..."
 } satisfies BaseTranslation
 
 export default en

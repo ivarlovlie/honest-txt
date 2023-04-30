@@ -13,7 +13,7 @@
     <Logo fill="white" />
   </div>
   <h2>honest.txt</h2>
-  <button>tap to start</button>
+  <button>tap to start >>></button>
 </section>
 
 <style>

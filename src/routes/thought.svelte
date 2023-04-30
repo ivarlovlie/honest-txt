@@ -3,21 +3,18 @@
   import { Stages, state } from "$lib/state";
 
   function carryOn() {
-    $state.currentStage = Stages.CHAT;
+    $state.currentStage = Stages.OUTRO;
   }
 </script>
 
 <section>
-  <div id="build-up">
-    <p>
-      {$LL.buildUp({ person: $state.name })}
-    </p>
-    <p>{"</3"}</p>
-    <p>
-      {$LL.buildUp2({ person: $state.name })}
-    </p>
-  </div>
-  <button on:click={carryOn}>{$LL.continueFromInfo()}</button>
+  <p>
+    {$LL.thoughtThatCounts()}
+    <br />
+    <br />
+    {"</3"}
+  </p>
+  <button on:click={carryOn}>{">>>"}</button>
 </section>
 
 <style>
@@ -29,18 +26,15 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-  }
-
-  #build-up {
-    width: 80%;
-    max-width: 330px;
+    color: #56525c;
   }
 
   p {
-    color: #56525c;
     font-size: 30px;
     font-weight: 300;
     text-align: center;
+    width: 80%;
+    max-width: 330px;
   }
 
   button {
