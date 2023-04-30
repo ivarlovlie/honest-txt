@@ -1,10 +1,19 @@
 <script lang="ts">
   import LL from "$i18n/i18n-svelte";
   import { Stages, state } from "$lib/state";
+  import { onDestroy } from "svelte";
 
   function carryOn() {
     $state.currentStage = Stages.CHAT;
   }
+
+  let timeout = setTimeout(() => {
+    carryOn();
+  }, 8000);
+
+  onDestroy(() => {
+    clearTimeout(timeout);
+  });
 </script>
 
 <section>

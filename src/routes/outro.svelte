@@ -27,7 +27,7 @@
   <p>{$LL.outro()}</p>
   <p>{$LL.outro1()}</p>
   <p>{$LL.outro2()}</p>
-  <button on:click={startOver}>{$LL.tryAgain()}</button>
+  <button on:click={startOver}>{">>>"}</button>
 </section>
 
 <style>
@@ -50,16 +50,10 @@
 
   button {
     all: unset;
-    font-size: 20px;
-    font-weight: 300;
-    color: #fff8f2;
-    background-color: red;
-    padding: 12px 14px;
-    border: 0;
-    border-radius: 15px;
+    font-size: 28px;
+    color: red;
     cursor: pointer;
-    user-select: none;
-    margin-top: 15px;
+    margin-top: 25px;
   }
 
   h1 {

@@ -27,7 +27,8 @@ const cs = {
 	now: "(přítomný čas)",
 	inputPlaceholder: "Pište zde...",
 	clickHereToContinue: "Klikněte zde pro pokračování",
-	theResponse: "Halla.. Díky za zprávu. Bylo to zajímavé heh 😉 Vlastně mi není tak dobře, možná se můžeme setkat příští týden?"
+	theResponse: "Ahoj.. Díky za zprávu. Bylo to zajímavé heh 😉 Vlastně mi není tak dobře, možná se můžeme setkat příští týden?",
+	backToStart: "zpět na začátek"
 } satisfies Translation
 
 export default cs
