@@ -201,7 +201,7 @@
       showDots = true;
       setTimeout(() => {
         showDots = false;
-        addGhostMessage("Halla, sees senere");
+        addGhostMessage($LL.theResponse());
       }, 4000);
     }, 4000);
   }
@@ -282,8 +282,6 @@
   });
 </script>
 
-
-
 <section>
   <header>
     <div class="profile">
@@ -331,14 +329,14 @@
 
   <footer>
     <aside
-  id="continue-message"
-  on:click={() => {
-    $state.currentStage = Stages.THOUGHT;
-  }}
-  style="display: {showContinueTooltip ? 'block' : 'none'}"
->
-  <p>{$LL.clickHereToContinue()} >>></p>
-</aside>
+      id="continue-message"
+      on:click={() => {
+        $state.currentStage = Stages.THOUGHT;
+      }}
+      style="display: {showContinueTooltip ? 'block' : 'none'}"
+    >
+      <p>{$LL.clickHereToContinue()}   >>></p>
+    </aside>
     <div class="input">
       <textarea
         class="input"
@@ -378,7 +376,7 @@
     position: absolute;
     cursor: pointer;
     z-index: 10000;
-    right: 0;
+    right: 15px;
     bottom: 50px;
   }
 </style>

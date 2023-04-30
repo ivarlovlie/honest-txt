@@ -32,8 +32,7 @@
     justify-content: center;
     gap: 20px;
   }
-  input[type="text"],
-  input[type="submit"] {
+  input[type="text"] {
     font-size: 30px;
     padding: 18px 22px;
     border-radius: 10px;
@@ -45,13 +44,17 @@
     width: 220px;
   }
   input[type="submit"] {
+    all: unset;
+    font-size: 28px;
     cursor: pointer;
+    margin-top: 20px;
+
   }
   form {
     max-width: 400px;
     display: flex;
-    justify-content: flex-end;
-    gap: 5px;
+    flex-direction: column;
+    align-items: center;
   }
   #instructions {
     text-align: center;

@@ -26,7 +26,8 @@ const en = {
 	yesterday: "Yesterday",
 	now: "(now)",
 	inputPlaceholder: "Write here...",
-	clickHereToContinue: "Click here to continue"
+	clickHereToContinue: "Click here to continue",
+	theResponse: "Hey.. Thanks for the message. It was interesting heh 😉 I'm not feeling so well actually, maybe we can meet next week?"
 } satisfies BaseTranslation
 
 export default en

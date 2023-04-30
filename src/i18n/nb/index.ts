@@ -26,7 +26,8 @@ const nb = {
 	yesterday: "I går",
 	now: "(nåtid)",
 	inputPlaceholder: "Skriv her...",
-	clickHereToContinue: "Trykk her for å fortsette"
+	clickHereToContinue: "Trykk her for å fortsette",
+	theResponse: "Halla.. Takk for meldingen. Den var jo interessant heh 😉 Jeg har det ikke så bra egentlig, kanskje vi kan møtes til uka?"
 } satisfies Translation
 
 export default nb

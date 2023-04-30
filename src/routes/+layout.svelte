@@ -17,14 +17,19 @@
 <slot />
 
 <style>
+  @font-face {
+    font-family: "Maison Neue Book";
+    src: local("Maison Book"),
+      url("/fonts/MaisonNeue-Book.otf") format("opentype") tech(color-COLRv1);
+  }
   :global(html) {
     height: 100%;
   }
   :global(body) {
     height: 100%;
     background: #f5f5f5;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont,
-      ".SFNSText-Regular", sans-serif;
+    font-family: "Maison Neue Book", system-ui, -apple-system,
+      BlinkMacSystemFont, ".SFNSText-Regular", sans-serif;
     font-size: 16px;
     line-height: 1.34;
     margin: 0;

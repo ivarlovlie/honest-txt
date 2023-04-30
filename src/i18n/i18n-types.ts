@@ -104,6 +104,10 @@ type RootTranslation = {
 	 * C​l​i​c​k​ ​h​e​r​e​ ​t​o​ ​c​o​n​t​i​n​u​e
 	 */
 	clickHereToContinue: string
+	/**
+	 * H​e​y​.​.​ ​T​h​a​n​k​s​ ​f​o​r​ ​t​h​e​ ​m​e​s​s​a​g​e​.​ ​I​t​ ​w​a​s​ ​i​n​t​e​r​e​s​t​i​n​g​ ​h​e​h​ ​�​�​ ​I​'​m​ ​n​o​t​ ​f​e​e​l​i​n​g​ ​s​o​ ​w​e​l​l​ ​a​c​t​u​a​l​l​y​,​ ​m​a​y​b​e​ ​w​e​ ​c​a​n​ ​m​e​e​t​ ​n​e​x​t​ ​w​e​e​k​?
+	 */
+	theResponse: string
 }
 
 export type TranslationFunctions = {
@@ -193,6 +197,10 @@ export type TranslationFunctions = {
 	 * Click here to continue
 	 */
 	clickHereToContinue: () => LocalizedString
+	/**
+	 * Hey.. Thanks for the message. It was interesting heh 😉 I'm not feeling so well actually, maybe we can meet next week?
+	 */
+	theResponse: () => LocalizedString
 }
 
 export type Formatters = {}
