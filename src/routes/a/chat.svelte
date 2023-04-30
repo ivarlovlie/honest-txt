@@ -2,7 +2,7 @@
   //@ts-nocheck
   import LL from "$i18n/i18n-svelte";
   import { Stages, state } from "$lib/state";
-  import { onMount } from "svelte";
+  import { SvelteComponentTyped, onMount } from "svelte";
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
   const caret = document.createElement("div");
@@ -86,7 +86,7 @@
       updateDisplay();
 
       if (messages.lastElementChild.classList.contains("to")) {
-        const newMessage = document.createElement("div");
+        const newMessage = document.createElement("p");
         newMessage.textContent = text;
         messages.lastElementChild.lastElementChild.appendChild(newMessage);
       } else {
@@ -112,7 +112,15 @@
         messages.appendChild(date);
         messages.appendChild(newMessage);
       }
+      scrollToBottom();
+      setTimeout(() => {
+        $state.currentStage = Stages.THOUGHT;
+      }, 1500);
     }
+  }
+
+  function scrollToBottom() {
+    messages.lastElementChild.scrollIntoView();
   }
 
   function updateDisplay() {
@@ -152,53 +160,65 @@
   });
 </script>
 
-<header>
-  <div class="profile">
-    <div class="picture">{profilePictureFallback($state.name)}</div>
-    <div class="name">{$state.name}</div>
-  </div>
-</header>
-
-<main class="messages" bind:this={messages}>
-  <div class="date">02. JAN, 11:40</div>
-  <div class="message from">
-    <div class="picture" />
-    <div class="texts">
-      <p>{$LL.initialChat[1].chat()}</p>
+<section>
+  <header>
+    <div class="profile">
+      <div class="picture">{profilePictureFallback($state.name)}</div>
+      <div class="name">{$state.name}</div>
     </div>
-  </div>
-  <div class="message to">
-    <div class="texts">
-      <p>{$LL.initialChat[1].response()}</p>
-    </div>
-  </div>
-  <div class="message from">
-    <div class="picture" />
-    <div class="texts">
-      <p>{$LL.initialChat[2].chat1()}</p>
-      <p>{$LL.initialChat[2].chat2()}</p>
-    </div>
-  </div>
-  <div class="date">{$LL.yesterday() + ", 18:40"}</div>
-  <div class="system-message">
-    * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
-  </div>
-  <div class="date">{$LL.now()}</div>
-</main>
+  </header>
 
-<footer>
-  <div class="input">
-    <textarea class="input" bind:this={textarea} />
-    <div class="display" bind:this={display} />
-  </div>
+  <main class="messages" bind:this={messages}>
+    <div class="date">02. JAN, 11:40</div>
+    <div class="message from">
+      <div class="picture" />
+      <div class="texts">
+        <p>{$LL.initialChat[1].chat()}</p>
+      </div>
+    </div>
+    <div class="message to">
+      <div class="texts">
+        <p>{$LL.initialChat[1].response()}</p>
+      </div>
+    </div>
+    <div class="message from">
+      <div class="picture" />
+      <div class="texts">
+        <p>{$LL.initialChat[2].chat1()}</p>
+        <p>{$LL.initialChat[2].chat2()}</p>
+      </div>
+    </div>
+    <div class="date">{$LL.yesterday() + ", 18:40"}</div>
+    <div class="system-message">
+      * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
+    </div>
+    <div class="date">{$LL.now()}</div>
+  </main>
 
-  <div class="actions">
-    <button type="button" class="button" bind:this={sendButton}>Send</button>
-  </div>
-</footer>
+  <footer>
+    <div class="input">
+      <textarea class="input" bind:this={textarea} />
+      <div class="display" bind:this={display} />
+    </div>
+
+    <div class="actions">
+      <button type="button" class="button" bind:this={sendButton}>Send</button>
+    </div>
+  </footer>
+</section>
 
 <style>
   @import url("/chat.css");
+  section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
   :global(body) {
     background-color: white;
   }

@@ -48,7 +48,7 @@
     cursor: pointer;
   }
   form {
-    width: 400px;
+    max-width: 400px;
     display: flex;
     justify-content: flex-end;
     gap: 5px;

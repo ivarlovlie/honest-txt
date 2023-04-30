@@ -25,7 +25,7 @@
     align-items: center;
     justify-content: center;
     gap: 30px;
-    height: 100vh;
+    height: 100%;
     cursor: pointer;
   }
 
@@ -39,6 +39,7 @@
     font-size: 64px;
     font-weight: 300;
     text-align: center;
+    margin: 0 15px;
   }
 
   h2 {

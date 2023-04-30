@@ -13,7 +13,11 @@
 <slot />
 
 <style>
+  :global(html) {
+    height: 100%;
+  }
   :global(body) {
+    height: 100%;
     background: #f5f5f5;
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
       ".SFNSText-Regular", sans-serif;

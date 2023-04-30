@@ -30,26 +30,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    height: 100vh;
+    height: 100%;
   }
 
   p {
     text-align: center;
     max-width: 330px;
+    margin-bottom: 0;
+    font-weight: 300;
   }
 
   button {
     all: unset;
-    font-size: 36px;
+    font-size: 20px;
     font-weight: 300;
     color: #fff8f2;
     background-color: red;
     padding: 12px 14px;
     border: 0;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
     user-select: none;
+    margin-top: 15px;
   }
 
   h1 {
@@ -59,8 +61,13 @@
     margin-bottom: -10px;
   }
 
+  h2 {
+    margin: 0;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
   #logo {
-    width: 190px;
-    margin: 15px;
+    width: 160px;
   }
 </style>

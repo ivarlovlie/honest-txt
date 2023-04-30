@@ -34,7 +34,7 @@ header {
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .system-message {
@@ -125,7 +125,7 @@ header {
 }
 
 .written p {
-  background: red;
+  background: red !important;
 }
 
 .to .texts p:first-of-type {
