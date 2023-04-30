@@ -140,6 +140,7 @@ header {
   justify-content: flex-end;
   flex-grow: 0;
   flex-shrink: 0;
+  align-items: center;
 }
 
 .button {

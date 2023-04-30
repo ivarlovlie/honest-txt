@@ -2,7 +2,7 @@
   //@ts-nocheck
   import LL from "$i18n/i18n-svelte";
   import { Stages, state } from "$lib/state";
-  import { SvelteComponentTyped, onMount } from "svelte";
+  import { onMount } from "svelte";
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
   const caret = document.createElement("div");
@@ -46,7 +46,7 @@
 
     textarea.value = `${
       textarea.value
-    }${spaceBetween}${getRandomStringFromArray(strings.wordlist)} `;
+    }${spaceBetween}${getRandomStringFromArray(strings)} `;
     autosize.update(textarea);
 
     updateDisplay();
@@ -157,6 +157,9 @@
         send();
       }
     });
+    strings = (
+      await import("../../lib/assets/strings." + $state.locale + ".json")
+    ).wordlist;
   });
 </script>
 

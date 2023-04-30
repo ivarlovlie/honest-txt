@@ -1,41 +1,4 @@
 {
-    "ghostMessages": [
-        "Halla.. Takk for meldingen. Den var jo interessant heh 😉 Jeg har det ikke så bra egentlig, kanskje vi kan møtes til uka?"
-    ],
-    "initialMessages": [
-        {
-            "sentAt": "12. des 2018, 16:30",
-            "received": "true",
-            "text": "Sett laderen min? :))"
-        },
-        {
-            "sentAt": "12. des 2018, 16:30",
-            "received": "false",
-            "text": "Nope… rotehue 😛"
-        },
-        {
-            "sentAt": "05. jan 2019, 09:30",
-            "received": "true",
-            "text": "Hei, sender du over den pdf'en?"
-        },
-        {
-            "sentAt": "05. jan 2019, 09:30",
-            "received": "false",
-            "text": "Null stress, sees på Kulturhuset torsdag?"
-        },
-        {
-            "sentAt": "16. mar 2019, 14:08",
-            "received": "true",
-            "text": "Takk for i går! Fint å se deg, finne på noe sprell neste helg🔥?"
-        }
-    ],
-    "genericResponses": [
-        "Halla.. Takk for meldingen. Den var jo interessant heh 😉 Jeg har det ikke så bra egentlig, kanskje vi kan møtes til uka?"
-    ],
-    "introductorySystemMessages": [
-        "* {name} har aktivert Honest text. Meldinger du sender vil være i regi av honest.txt",
-        "* Hvis du nøler, vil honest.txt gi deg et tilfeldig ord for å starte setningen. Etter ett minutt, vil meldingen automatisk bli sendt. Bare skriv, ikke tenk på det."
-    ],
     "wordlist": [
         "spontan",
         "kald",
