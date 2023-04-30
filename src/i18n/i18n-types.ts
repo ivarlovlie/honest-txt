@@ -74,7 +74,7 @@ type RootTranslation = {
 		}
 		'2': {
 			/**
-			 * K​o​n​’​n​i​c​h​i​w​a​a​a​!​ ​H​o​p​e​ ​T​o​k​y​o​ ​t​r​e​a​t​s​ ​y​o​u​ ​l​i​k​e​ ​r​o​y​a​l​t​y​ ​:​)​)​)​)
+			 * K​o​n​'​n​i​c​h​i​w​a​a​a​!​ ​H​o​p​e​ ​T​o​k​y​o​ ​t​r​e​a​t​s​ ​y​o​u​ ​l​i​k​e​ ​r​o​y​a​l​t​y​ ​:​)​)​)​)
 			 */
 			chat1: string
 			/**
@@ -156,7 +156,7 @@ export type TranslationFunctions = {
 		}
 		'2': {
 			/**
-			 * Kon’nichiwaaa! Hope Tokyo treats you like royalty :))))
+			 * Kon'nichiwaaa! Hope Tokyo treats you like royalty :))))
 			 */
 			chat1: () => LocalizedString
 			/**

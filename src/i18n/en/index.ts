@@ -18,7 +18,7 @@ const en = {
 			response: "It's morning in Tokyo 😎"
 		},
 		2: {
-			chat1: "Kon’nichiwaaa! Hope Tokyo treats you like royalty :))))",
+			chat1: "Kon'nichiwaaa! Hope Tokyo treats you like royalty :))))",
 			chat2: "Take lots of pics!"
 		}
 	},
