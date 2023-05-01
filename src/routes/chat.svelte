@@ -2,7 +2,7 @@
   //@ts-nocheck
   import LL from "$i18n/i18n-svelte";
   import { Stages, state } from "$lib/state";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import autosize from "autosize";
   import { profilePictureFallback } from "$lib/utils";
   import Dots from "$lib/components/dots.svelte";
@@ -14,6 +14,7 @@
   let textarea;
   let sendTimeout = null;
   let timeout;
+  const timeouts = [];
 
   const strings = {
     cs: [
@@ -122,17 +123,24 @@
     autoSend: 30000,
   };
 
+  function rollOn() {
+    $state.currentStage = Stages.THOUGHT;
+  }
+
   function startFillWordTimer() {
     const stopPunctuationPattern = /[.?!]$/;
     const text = textarea.value.trim();
 
     stopFillWordTimer();
-
-    // Only start timer if there is no stop punctuation
-    if (!stopPunctuationPattern.test(text)) {
-      timeout = setTimeout(fillWord, timings.wordFill);
-      console.log("Started fill word timeout");
-    }
+    timeout = setTimeout(fillWord, timings.wordFill);
+    timeouts.push(timeout);
+    console.log("Started fill word timeout");
+    // // Only start timer if there is no stop punctuation
+    // if (!stopPunctuationPattern.test(text)) {
+    //   timeout = setTimeout(fillWord, timings.wordFill);
+    //   timeouts.push(timeout);
+    //   console.log("Started fill word timeout");
+    // }
   }
 
   function stopFillWordTimer() {
@@ -163,6 +171,7 @@
     if (sendTimeout === null) {
       console.log("Start send timeout");
       sendTimeout = setTimeout(send, timings.autoSend);
+      timeouts.push(sendTimeout);
     }
   }
 
@@ -178,7 +187,6 @@
   }
 
   function addGhostMessage(message) {
-    const messages = document.querySelector(".messages");
     const newMessage = document.createElement("div");
     newMessage.classList.add("message", "from", "new");
     newMessage.innerHTML = `
@@ -199,15 +207,16 @@
     if (dotsTimeout) return;
     dotsTimeout = setTimeout(() => {
       showDots = true;
-      setTimeout(() => {
+      let t = setTimeout(() => {
         showDots = false;
         addGhostMessage($LL.theResponse());
       }, 4000);
+      timeouts.push(t);
     }, 4000);
+    timeouts.push(dotsTimeout);
   }
 
   function send() {
-    resetSendTimeout();
     const text = textarea.value.trim();
     if (!text) return;
 
@@ -215,6 +224,9 @@
     textarea.blur();
     autosize.update(textarea);
     updateDisplay();
+    resetSendTimeout();
+    showContinueTooltip = true;
+    startDots();
 
     if (messages.lastElementChild.classList.contains("to")) {
       const newMessage = document.createElement("p");
@@ -234,8 +246,6 @@
     }
 
     scrollToBottom();
-    showContinueTooltip = true;
-    startDots();
   }
 
   function scrollToBottom() {
@@ -248,7 +258,7 @@
       display.appendChild(caret);
     }
   }
-  
+
   onMount(async () => {
     autosize(textarea);
     textarea.addEventListener("input", updateDisplay);
@@ -279,6 +289,9 @@
         send();
       }
     });
+  });
+  onDestroy(() => {
+    timeouts.forEach((t) => clearTimeout(t));
   });
 </script>
 
@@ -330,9 +343,8 @@
   <footer>
     <aside
       id="continue-message"
-      on:click={() => {
-        $state.currentStage = Stages.THOUGHT;
-      }}
+      on:click={rollOn}
+      on:keydown={rollOn}
       style="display: {showContinueTooltip ? 'block' : 'none'}"
     >
       <p>{$LL.clickHereToContinue()} >>></p>

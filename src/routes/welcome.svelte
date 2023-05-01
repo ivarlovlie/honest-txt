@@ -1,6 +1,6 @@
 <script lang="ts">
   import Logo from "$lib/components/logo.svelte";
-  import { Stages, state } from "$lib/state";
+  import { state, Stages } from "$lib/state";
 
   function start() {
     $state.currentStage = Stages.LANG;

@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
   import type { Instance, Placement, Options } from "@popperjs/core";
@@ -51,4 +51,4 @@
 
 <style>
   @import url("/tooltip.css");
-</style>
+</style> -->
