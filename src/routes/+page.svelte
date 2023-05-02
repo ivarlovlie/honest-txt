@@ -16,7 +16,7 @@
 </script>
 
 {#if $state.currentStage !== Stages.WELCOME && $state.currentStage !== Stages.LANG}
-  <button id="b2s" on:click={b2s}>{$LL.backToStart()}</button>
+  <button id="b2s" on:click={b2s}>&lt;&lt;&lt; {$LL.backToStart()}</button>
 {/if}
 
 {#if $state.currentStage === Stages.WELCOME}

@@ -210,6 +210,7 @@
       let t = setTimeout(() => {
         showDots = false;
         addGhostMessage($LL.theResponse());
+        showContinueTooltip = true;
       }, 4000);
       timeouts.push(t);
     }, 4000);
@@ -225,7 +226,6 @@
     autosize.update(textarea);
     updateDisplay();
     resetSendTimeout();
-    showContinueTooltip = true;
     startDots();
 
     if (messages.lastElementChild.classList.contains("to")) {
@@ -295,6 +295,15 @@
   });
 </script>
 
+<aside
+  id="continue-message"
+  on:click={rollOn}
+  on:keydown={rollOn}
+  style="display: {showContinueTooltip ? 'block' : 'none'}"
+>
+  <p>{$LL.clickHereToContinue()} &gt;&gt;&gt;</p>
+</aside>
+
 <section>
   <header>
     <div class="profile">
@@ -341,14 +350,6 @@
   </main>
 
   <footer>
-    <aside
-      id="continue-message"
-      on:click={rollOn}
-      on:keydown={rollOn}
-      style="display: {showContinueTooltip ? 'block' : 'none'}"
-    >
-      <p>{$LL.clickHereToContinue()} >>></p>
-    </aside>
     <div class="input">
       <textarea
         class="input"
@@ -366,6 +367,12 @@
 
 <style>
   @import url("/chat.css");
+
+  :global(#b2s) {
+    color: red !important;
+    left: 5px;
+    top: 5px;
+  }
 
   section {
     position: absolute;
@@ -388,7 +395,11 @@
     position: absolute;
     cursor: pointer;
     z-index: 10000;
-    right: 15px;
-    bottom: 50px;
+    right: 5px;
+    top: 5px;
+  }
+
+  #continue-message p {
+    margin: 0;
   }
 </style>
