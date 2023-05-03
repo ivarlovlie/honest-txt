@@ -9,9 +9,9 @@ const cs = {
 	thoughtThatCounts: "Jde o myšlenku, která se počítá",
 	about: "O",
 	tryAgain: "Zkus to znovu",
-	outro: "\"honest.txt\" je snižovač práhů, kulturní služba pro nás trochu trapné lidi, kteří chtějí ukázat, že se starají o někoho, kdo truchlí.",
-	outro1: "Jelikož se jedná o překlad z norského jazyka, předpokládám, že jde o chybu a mělo by se jednat o překlad do norštiny, nikoli do češtiny. Zkusím proto přeložit následující větu do norštiny.",
-	outro2: "Pokud váháte, budou vám prezentována náhodná slova. Pokud smažete, nic se nestane. Vaše zpráva bude bez ohledu na to, jak skončí, odeslána - protože jde o myšlenku, která se počítá.",
+	outro: "„honest.txt“ je omezovač prahu, kulturní služba pro ty z nás, kteří se cítí trochu trapně projevovat péči o někoho, kdo truchlí.",
+	outro1: "Službu plug-in aktivují na sociálních sítích ti, kteří někoho ztratili, aby dali ostatním najevo, že daný člověk truchlí.",
+	outro2: "Když zaváháte, jsou vám předložena náhodná slova. Pokud je smažete, nic se nestane. Vaše zpráva bude odeslána bez ohledu na to, jak skončí - protože na myšlence záleží.",
 	initialChat: {
 		1: {
 			chat: "Pozor!!! ..dnes večer je vážně spousta padajících hvězd",

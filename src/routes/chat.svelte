@@ -213,7 +213,7 @@
         showContinueTooltip = true;
       }, 4000);
       timeouts.push(t);
-    }, 4000);
+    }, 3000);
     timeouts.push(dotsTimeout);
   }
 
@@ -295,15 +295,6 @@
   });
 </script>
 
-<aside
-  id="continue-message"
-  on:click={rollOn}
-  on:keydown={rollOn}
-  style="display: {showContinueTooltip ? 'block' : 'none'}"
->
-  <p>{$LL.clickHereToContinue()} &gt;&gt;&gt;</p>
-</aside>
-
 <section>
   <header>
     <div class="profile">
@@ -336,7 +327,6 @@
     <div class="system-message initial-message">
       * {$LL.personHasActivatedHonestTxt({ person: $state.name })}
     </div>
-    <div class="date initial-message">{$LL.now()}</div>
     {#if showDots}
       <div class="message from">
         <div class="picture" />
@@ -350,6 +340,14 @@
   </main>
 
   <footer>
+    <aside
+      id="continue-message"
+      on:click={rollOn}
+      on:keydown={rollOn}
+      style="display: {showContinueTooltip ? 'flex' : 'none'}"
+    >
+      <p>{$LL.clickHereToContinue()} &gt;&gt;&gt;</p>
+    </aside>
     <div class="input">
       <textarea
         class="input"
@@ -395,8 +393,10 @@
     position: absolute;
     cursor: pointer;
     z-index: 10000;
-    right: 5px;
-    top: 5px;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   #continue-message p {
